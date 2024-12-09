@@ -1,7 +1,7 @@
 import mysql.connector
 
 con = mysql.connector.connect(
-    host='localhost', user="root", password='password', database='emp')
+    host='localhost', user="oleg", password='!$Aug1987', database='emp')
 
 
 # Check if Employee exist in database by id
@@ -28,7 +28,7 @@ def check_employee(employee_id):
 def add_employee():
     Id = input("Enter Employee Id: ")
 
-    if check_employee(id):
+    if check_employee(Id):
         print("Employee already exists. Please try again.")
         return
 
@@ -81,7 +81,7 @@ def remove_employee():
         finally:
             cursor.close()
 
-def promotr_employee():
+def promote_employee():
     Id = input("Enter Employee Id: ")
 
     if not check_employee(Id):
@@ -131,33 +131,36 @@ def display_employees():
         print(f"Error: {err}")
     
     finally:
-        cursor.colse()
+        cursor.close()
 
 def menu():
-    while True:
-        print("\nWelcome to Employee Management Record")
-        print("Press:")
-        print("1. to Add Employee")
-        print("2. to Remove Employee")
-        print("3. to Promote Employee")
-        print("4. to Display Employee")
-        print("5. to Exit")
+    try:
+        while True:
+            print("\nWelcome to Employee Management Record")
+            print("Press:")
+            print("1. to Add Employee")
+            print("2. to Remove Employee")
+            print("3. to Promote Employee")
+            print("4. to Display Employee")
+            print("5. to Exit")
 
-        ch = input("Enter your choice: ")
+            ch = input("Enter your choice: ")
 
-        if ch == '1':
-            add_employee()
-        elif ch == '2':
-            remove_employee
-        elif ch == '3':
-            promotr_employee
-        elif ch == '4':
-            display_employees()
-        elif ch == 5:
-            print("Exiting the program. Goodbye!")
-            break
-        else:
-            print("Invalid Choice! Please try again.")
+            if ch == '1':
+                add_employee()
+            elif ch == '2':
+                remove_employee()
+            elif ch == '3':
+                promote_employee()
+            elif ch == '4':
+                display_employees()
+            elif ch == '5':
+                print("Exiting the program. Goodbye!")
+                break
+            else:
+                print("Invalid Choice! Please try again.")
+    finally:
+        con.close()
 
 if __name__ == "__main__":
     menu()
