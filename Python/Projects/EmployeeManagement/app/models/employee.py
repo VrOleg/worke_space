@@ -39,7 +39,7 @@ def add_employee():
 
         sql = 'INSERT INTO employees (id, name, position, salary) VALUES(%s, %s, %s, %s)'
 
-        data = (id, Name, Post, Salary)
+        data = (Id, Name, Post, Salary)
         cursor = con.cursor()
 
         try:
